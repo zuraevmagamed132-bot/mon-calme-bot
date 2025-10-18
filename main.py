@@ -40,7 +40,7 @@ def handle_message(message):
         bot.reply_to(message, "Сначала используйте /start!")
 
 # Запуск бота
-if name == "main":
+if __name__ == "__main__":
     print("Бот запускается...")
     try:
         bot.polling(none_stop=True)
