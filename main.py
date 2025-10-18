@@ -1,29 +1,32 @@
 import telebot
-from database import init_db, get_user, create_user  # Импортируем только необходимые функции
+import os
 
-# Токен вашего бота (замените на реальный или используйте переменную окружения)
-BOT_TOKEN =  "8367412487:AAGjIRskfVmvhPU94HE7G_fHS9UBxEux5m4" # Для примера, лучше хранить в env
-bot = telebot.TeleBot(BOT_TOKEN)
-
-# Инициализация базы данных (если модуль database.py отсутствует, используем временное решение)
+# Импорты для базы данных (с обработкой ошибок)
 try:
-    init_db()
-except NameError:
-    # Простая замена, если database.py не настроен
-    users = {}  # Временная "база" пользователей
+    from database import init_db, get_user, create_user
+except ImportError:
+    # Временная реализация, если database.py отсутствует
+    users = {}
     def init_db():
-        pass  # Пустая инициализация для теста
+        pass
     def get_user(user_id):
         return users.get(user_id)
     def create_user(user_id):
         users[user_id] = {"tips": 0}
 
-# Обработчик команды /start
+# Токен бота (лучше из переменной окружения)
+BOT_TOKEN = os.getenv("BOT_TOKEN", "8367412487:AAGJrskFvmnPU94EH6/fhSO-abcde")
+bot = telebot.TeleBot(BOT_TOKEN)
+
+# Инициализация
+init_db()
+
+# Обработчик /start
 @bot.message_handler(commands=['start'])
 def start(message):
     user_id = message.from_user.id
-    if not get_user(user_id):  # Проверяем, есть ли пользователь
-        create_user(user_id)  # Создаём нового, если нет
+    if not get_user(user_id):
+        create_user(user_id)
     bot.reply_to(message, "Привет! 😄 — ваш универсальный помощник.\nНапишите любой запрос...")
 
 # Обработчик всех сообщений
@@ -34,11 +37,12 @@ def handle_message(message):
     if user:
         bot.reply_to(message, f"Вы написали: {message.text}")
     else:
-        bot.reply_to(message, "Сначала используйте /start, чтобы начать!")
+        bot.reply_to(message, "Сначала используйте /start!")
 
 # Запуск бота
 if name == "main":
+    print("Бот запускается...")
     try:
         bot.polling(none_stop=True)
     except Exception as e:
-        print(f"Ошибка при запуске бота: {e}")
+        print(f"Ошибка бота: {e}")
