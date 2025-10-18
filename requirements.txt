@@ -1,0 +1,4 @@
+pyTelegramBotAPI
+python-dotenv
+sqlite3  # (встроен в Python, не требует установки)
+requests
