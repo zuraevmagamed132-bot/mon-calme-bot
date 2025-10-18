@@ -15,7 +15,7 @@ except ImportError:
         users[user_id] = {"tips": 0}
 
 # Токен бота (лучше из переменной окружения)
-BOT_TOKEN = os.getenv("BOT_TOKEN", "8367412487:AAGJrskFvmnPU94EH6/fhSO-abcde")
+BOT_TOKEN = os.getenv("BOT_TOKEN", "8367412487:AAGZT0XsLcWWk8TuvhiNFhs8Gcw3xRQ69j8")
 bot = telebot.TeleBot(BOT_TOKEN)
 
 # Инициализация
