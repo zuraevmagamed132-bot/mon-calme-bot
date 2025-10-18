@@ -2,7 +2,7 @@ import telebot
 from database import init_db, get_user, create_user, increment_free_tips
 
 # 🔑 Токен твоего бота
-BOT_TOKEN = "8367412487:AAExLnT1jE44hVTW9GKUxAe3Jp9ui-axJpA"
+BOT_TOKEN = 8367412487:AAGjIRskfVmvhPU94HE7G_fHS9UBxEux5m4
 bot = telebot.TeleBot(BOT_TOKEN)
 
 # Инициализация базы при запуске
