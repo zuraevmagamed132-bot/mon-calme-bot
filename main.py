@@ -2,7 +2,7 @@ import telebot
 from database import init_db, get_user, create_user  # Импортируем только необходимые функции
 
 # Токен вашего бота (замените на реальный или используйте переменную окружения)
-BOT_TOKEN = "8367412487:AAGjIRskfVmvhPU94HE7G_fHS9UBxEux5m4"  # Для примера, лучше хранить в env
+BOT_TOKEN =  "8367412487:AAGjIRskfVmvhPU94HE7G_fHS9UBxEux5m4" # Для примера, лучше хранить в env
 bot = telebot.TeleBot(BOT_TOKEN)
 
 # Инициализация базы данных (если модуль database.py отсутствует, используем временное решение)
